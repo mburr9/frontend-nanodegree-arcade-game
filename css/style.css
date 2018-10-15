@@ -1,3 +1,31 @@
 body {
     text-align: center;
 }
+
+.minutes, .score {
+  margin-left: 5px;
+}
+
+li {
+  list-style: none;
+}
+
+.hearts {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  color: red;
+}
+
+.hearts li {
+  display: inline-block;
+}
+
+.restart {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+h1 {
+  margin: 0;
+}
