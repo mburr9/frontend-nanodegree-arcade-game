@@ -1,6 +1,24 @@
-frontend-nanodegree-arcade-game
-===============================
+# Frogger Game Project
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## Table of Contents
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+* [Dependencies](#dependencies)
+* [Game Description](#gamedescription)
+* [How to Play](#howtoplay)
+* [Winning the Game](#winningthegame)
+
+## Dependencies
+
+This game depends on a Bootstrap font link as well as jQuery script in the header of your HTML.
+
+## Game Description
+
+Players move their player sprite from the grass to the water avoiding making any contact with enemy bugs. Players start with 3 lives and lose a life after contact with an enemy bug. Three instances of contact with an enemy bug will result in a game over. If the player successfully reaches the water 5 times before losing all three lives they beat the game.
+
+## How to Play
+
+Game starts by having the player use the right and left arrow keys to change their player sprite to the desired look. After choosing a sprite and hitting enter gameplay starts. Player uses left, right, up, and down arrow keys to move their player. Contact with an enemy bug will return the player to the start position. Reaching the water will also return the player to the start position.
+
+## Winning the Game
+
+The game is won when the player reaches the water 5 times without losing all three lives. At this point there is a pop up congratulating the player for winning, displaying their remaining lives, the time it took to complete the game, and asking if they'd like to play again. If player clicks ok the game will reload and if they click cancel they will be left with the completed winning game board.
