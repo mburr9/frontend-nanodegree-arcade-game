@@ -6,6 +6,7 @@ var Enemy = function(x,y) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    this.originalX = x;
     this.x = x; //sets enemy x coordinate
     this.y = y; // sets enemy y coordinate
     this.possibleSpeeds = [50, 100, 125, 150];
@@ -13,24 +14,22 @@ var Enemy = function(x,y) {
     this.resetSpeed = function() { // re-randomizes enemy speed
       this.speed = this.possibleSpeeds[Math.floor(Math.random() * this.possibleSpeeds.length)];
     }
-    this.moveEnemy = function(dt) { //checks if moving enemy will place them off screen. If so resets them to initial x coordinate. If not moves them forward
-      if ((this.x += this.speed * dt) > 505) {
-        this.x = x;
-        this.resetSpeed();
-      } else {
-        this.x += this.speed * dt;
-      }
-    }
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
-  this.moveEnemy(dt);
+Enemy.prototype.update = function(dt) { //checks if moving enemy will place them off screen. If so resets them to initial x coordinate. If not moves them forward
+  if ((this.x += this.speed * dt) > 505) {
+    this.x = this.originalX;
+    this.resetSpeed();
+  } else {
+    this.x += this.speed * dt;
+  }
+};
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-};
+
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -74,7 +73,7 @@ var Player = function() {
 };
 
 Player.prototype.update = function(dt) {
-  checkCollision();
+  this.checkCollision();
 
 };
 
@@ -116,6 +115,24 @@ Player.prototype.handleInput = function(arrow) {
         this.x += 101;
       };
   }
+};
+
+let lives = 3;
+/**
+ * @description checks if the player sprite and the enemy sprite are touching and if so moves the player back to start, removes a heart from screen, and checks if player is out of lives
+ */
+Player.prototype.checkCollision = function() {
+  for (enemy of allEnemies) {
+    if (enemy.y === this.y && (enemy.x + 70 > this.x && enemy.x < this.x + 70)) {
+      this.x = 202;
+      this.y = 382;
+      $('.fa-heart').last().toggleClass('fa-heart'); //removes heart from the screen
+      lives -= 1; //decreases lives remaining by 1
+      if (lives === 0) { //checks if player is out of lives and calls gameOver function if so
+        gameOver();
+      };
+    };
+  };
 };
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -169,24 +186,6 @@ $('.restart').click(function() { //event listener for user clicking on restart b
 */
 function restart() {
   location.reload();
-};
-
-let lives = 3;
-/**
- * @description checks if the player sprite and the enemy sprite are touching and if so moves the player back to start, removes a heart from screen, and checks if player is out of lives
- */
-function checkCollision() {
-  for (enemy of allEnemies) {
-    if (enemy.y === player.y && (enemy.x + 70 > player.x && enemy.x < player.x + 70)) {
-      player.x = 202;
-      player.y = 382;
-      $('.fa-heart').last().toggleClass('fa-heart'); //removes heart from the screen
-      lives -= 1; //decreases lives remaining by 1
-      if (lives === 0) { //checks if player is out of lives and calls gameOver function if so
-        gameOver();
-      };
-    };
-  };
 };
 
 /**
