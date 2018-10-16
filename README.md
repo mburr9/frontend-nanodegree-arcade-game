@@ -17,7 +17,7 @@ Players move their player sprite from the grass to the water avoiding making any
 
 ## How to Play
 
-Game starts by having the player use the right and left arrow keys to change their player sprite to the desired look. After choosing a sprite and hitting enter gameplay starts. Player uses left, right, up, and down arrow keys to move their player. Contact with an enemy bug will return the player to the start position. Reaching the water will also return the player to the start position.
+To load the game, open index.html in your browser. Game starts by having the player use the right and left arrow keys to change their player sprite to the desired look. After choosing a sprite and hitting enter gameplay starts. Player uses left, right, up, and down arrow keys to move their player. Contact with an enemy bug will return the player to the start position. Reaching the water will also return the player to the start position.
 
 ## Winning the Game
 
